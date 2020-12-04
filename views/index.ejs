@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CMPT470</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+            .jumbotron {
+              margin-top: 5px;
+            }
+        </style>
+    </head>
+    <body>
+	<div class="container">
+        <%- include('partials/navbar') %>
+        <div class="jumbotron">
+            <h1>Beautiful Rectangles</h1>
+            <p class="lead">Input your rectangle information below!</p>
+        </div>
+
+        <div class="rect_input">
+            <div class="rect_content">
+                <form id="rect_form" action="/rectangle" method="POST">
+                    <div class="form-group">
+                        <label for="w">width</label>
+                        <input type="number" class="form-control" id="width" name="width" min="75" max="800" step="5" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="h">height</label>
+                        <input type="number" class="form-control" id="height" name="height" min="25" max="800" step="5" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="c">color</label>
+                        <input type="color" class="form-control" id="color" name="color" required="required">
+                    </div>
+
+		    <input type="submit" class="btn btn-primary" value="Create">
+                </form>
+
+
+		<form id="rect_update" action="/rectangle/update" method="POST">
+                    <div class="form-group">
+                        <label for="w">width</label>
+                        <input type="number" class="form-control" id="width" name="width" min="75" max="800" step="5" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="h">height</label>
+                        <input type="number" class="form-control" id="height" name="height" min="25" max="800" step="5" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="c">color</label>
+                        <input type="color" class="form-control" id="color" name="color" required="required">
+                    </div>
+
+		    <div class="form-group">
+			    <label for="u"> id </label> 
+			    <input type="number" class="form-control" id="id" name="id" min="0" step="1" required="required">
+		    </div>
+		
+		    <input type="submit" class="btn btn-success" value="Update">
+                </form>
+
+
+
+
+
+
+
+		<form id="rect_delete" action="/rectangle/delete" method="POST">
+		    <div class="form-group">
+	 	        <label for='d'> id </label>
+			<input type="number" class="form-control" id="id" name="id" min="0" step="1" required="required">
+		    </div>
+
+		  <input type="submit" class="btn btn-danger" value="Remove">
+
+	        </form>
+         </div>
+
+      </div>
+    
+     <div class="rectangle content">
+       <h2>All Rectangles</h2>
+       
+
+       <% if (rectangles.length > 0) { %>
+         <% rectangles.forEach(rec => { %>
+	   <a class="single">
+	     <% w = rec.width %>
+	     <% h = rec.height %>
+	     <% c = rec.color %>
+	     <% rect_id = rec.id %>
+	     <div style="width:<%= w %>px;height:<%= h %>px;border:2px solid #<%= c %>; background-color: #<%= c %>; display: flex; justify-content:center; align-items: center;"> id: <%= rect_id %> </div>
+           </a>
+      <% }) %>
+    <% } else { %>
+      <p>There are no rectangles currently...</p>
+    <% } %>
+
+
+
+
+
+     </div>
+
+    <body>
+</html>

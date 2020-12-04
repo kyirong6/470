@@ -1,0 +1,9 @@
+{
+  "apps": [{
+    "script" : "hello.js",
+    "env": {
+      "NODE_ENV": "production",
+      "PORT": "80"
+    }
+  }]
+}
